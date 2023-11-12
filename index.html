@@ -5,22 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="logo.png">
     <title>PyCPPExecuter</title>
 </head>
 
 <body>
-    <header class="main-header">
-        <div class="header-container">
-            <div class="logo">
-                <a href="https://Jayakrishna112.github.io/docs.PyCPPExecuter">
-                    <p>PyCPPExecuter</p>
-                </a>
+    <div class="fixed-header">
+        <header class="main-header">
+            <div class="header-container">
+                <div class="logo">
+                    <a href="https://Jayakrishna112.github.io/docs.PyCPPExecuter">
+                        <img src="logo1.png" alt="" width="256px" height="54px">
+                    </a>
+                </div>
+                <div class="github-name">
+                    <a href="https://github.com/Jayakrishna112/PyCPPExecuter" target="_blank">Github</a>
+                </div>
             </div>
-            <div class="github-name">
-                <a href="https://github.com/Jayakrishna112/PyCPPExecuter" target="_blank">Github</a>
-            </div>
-        </div>
-    </header>
+        </header>
+    </div>
     <div class="container">
         <div class="content">
             <button class="toggle-btn" onclick="toggleSideMenu()">
@@ -35,22 +38,64 @@
             <ul>
                 <li class="doc">Documentation</li>
                 <li><a href="#Installation">Installation</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="#RunningCPP">Running C++ Code</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
         </div>
         <div class="data">
             <div id="Installation">
                 <h1>Installation</h1>
-                <p>Installation in Python through conda</p>
-                    <div class="code-block">
-                        <p class="comment"><code>#Python</code></p>
-                        <p ><code>pip install PyCPPExecuter</code></p>
-                    </div>
+                <h4>Installation in Python</h4>
+                <div class="code-block">
+                    <p class="comment"><code>#Python</code></p>
+                    <p ><code>pip install PyCPPExecuter</code></p>
+                </div>
+                <h4>Installation in Linux</h4>
+                <div class="code-block">
+                    <p class="comment"><code>#Python</code></p>
+                    <p ><code>python3 -m pip install PyCPPExecuter</code></p>
+                </div>
+                <h4>Installation in Google Collab/Jupyter Notebook</h4>
+                <div class="code-block">
+                    <p ><code>!pip install PyCPPExecuter</code></p>
+                </div>
+                <p></p>
+                <div style="width: 83%;"><b>Note</b>: Any error in file path permissions please try to use 
+                    <a href="https://docs.python.org/3/library/venv.html" target="_blank">Python virtual environment</a>
+                </div>
+                <p></p>
             </div>
+            <div id="RunningCPP">
+                <h1>Running C++ Code</h1>
+                <div>
+                    <p style="width: 83%;">By specifying the code in the doc strings and invoking the
+                        compile method and execute method one after the other from the class
+                        <b>CPPExecuter</b>.
+                    </p>
+                    <div class="code-block language-python">
+                        <p class="comment"><code>#Import the CPPExecuter class</code></p>
+                        <p><code>from PyCPPExecuter import CPPExecuter</code></p>
+                        <p class="comment"><code>#Initialize the Code in doc string</code></p>
+                        <p>
+<code class="language-python"><pre class="docstring">
+<p style="color: rgb(255, 255, 255);display: inline-table;">cppcode =</p> """#include&lt;iostream&gt;
+int main(){
+    std::cout << "Hello World!";
+    return 0;
+}"""
+</pre>
+                        </code></p>
+                        <p><code>exe = CPPExecuter()</code></p>
+                        <p><code>exe.compile(code = cppcode)</code></p>
+                        <p><code>exe.execute()</code></p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pygments/2.10.0/pygments.min.js"></script>
 </body>
 
 </html>
