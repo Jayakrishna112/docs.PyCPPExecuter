@@ -1,0 +1,147 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.main-header {
+    background-color: rgb(104, 104, 237);
+    color: #fff;
+    padding: 0 50px;
+}
+
+.header-container {
+    max-width: 100%;
+    margin: 0px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    flex-basis: 50%;
+}
+
+.logo a{
+    text-decoration: none;
+    color: #ffffff;
+    font-size: large;
+}
+.github-name {
+    flex-basis: 50%;
+    text-align: right;
+}
+
+.github-name a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 200px) {
+    .logo, .github-name {
+        flex-basis: 100%; 
+        text-align: center;
+    }
+}
+
+
+.side-menu {
+    height: 100%;
+    width: 200px;
+    background-color: rgb(255, 255, 255);
+    overflow-x: hidden;
+    padding-top: 30px;
+    margin-left: 50px;
+    display: block;
+}
+
+.side-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.side-menu li {
+    color: #ffffff;
+    padding: 15px;
+    text-align: center;
+}
+
+.side-menu a {
+    text-decoration: none;
+    color: rgb(102, 102, 243);
+    font-size: 18px;
+}
+
+.doc{
+    background-color: rgb(104, 104, 237);
+}
+
+.toggle-btn {
+    position: fixed;
+    height: 30px;
+    top: auto;
+    left: 25px;
+    cursor: pointer;
+    background-color: #ffffff;
+    border: none;
+}
+
+.content {
+    margin-left: 10px; /* Adjust according to your side menu width */
+    display: none;
+    float: left;
+    padding-left: 0;
+    z-index: 999;
+}
+
+.toggle-div {
+    width: 20px;
+    height:22px;
+    background-color: #ffffff;
+}
+
+.toggle-div span {
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: rgb(104, 104, 237);
+    border-radius: 10px;
+    margin-top: 3px; /*Adjust as needed for spacing*/
+}
+
+@media screen and (max-width: 600px) {
+    .content{
+        display: block;
+    }
+}
+
+.container{
+    display: flex;
+    margin-top: 20px;
+}
+
+.data{
+    margin-top: 13px;
+    margin-left: 20px;
+    flex: 1;
+}
+
+.code-block {
+    background-color: #333333;
+    color: #ffffff;
+    font-family: monospace;
+    padding: 20px 10px;
+    border-radius: 5px;
+    width: 75%;
+    padding-left: 20px;
+  }
+  .code-block p {
+    margin: 5px;
+  }
+
+.comment{
+    color: #72C02C;
+}
