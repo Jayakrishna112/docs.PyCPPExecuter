@@ -38,8 +38,20 @@
             <ul>
                 <li class="doc">Documentation</li>
                 <li><a href="#Installation">Installation</a></li>
-                <li><a href="#RunningCPP">Running C++ Code</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#CPP">C++</a>
+                    <ul class="in-menu">
+                        <li><a href="#RunningCPP">Running C++ Code</a></li>
+                        <li><a href="#CPPObject">Creating Object file</a></li>
+                        <li><a href="#CPPAssembly">Creating Assembly Code</a></li>
+                    </ul>
+                </li>
+                <li><a href="#C">C</a>
+                    <ul class="in-menu">
+                        <li><a href="#RunningC">Running C++ Code</a></li>
+                        <li><a href="#CObject">Creating Object file</a></li>
+                        <li><a href="#CAssembly">Creating Assembly Code</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <div class="data">
@@ -47,17 +59,30 @@
                 <h1>Installation</h1>
                 <h4>Installation in Python</h4>
                 <div class="code-block">
-                    <p class="comment"><code>#Python</code></p>
+                    <p class="comment"><code>#bash</code></p>
                     <p ><code>pip install PyCPPExecuter</code></p>
                 </div>
                 <h4>Installation in Linux</h4>
                 <div class="code-block">
-                    <p class="comment"><code>#Python</code></p>
+                    <p class="comment"><code>#bash</code></p>
                     <p ><code>python3 -m pip install PyCPPExecuter</code></p>
                 </div>
-                <h4>Installation in Google Collab/Jupyter Notebook</h4>
+                <h4>Installation in Google Colab/Jupyter Notebook</h4>
                 <div class="code-block">
+                    <p class="comment"><code>#Python</code></p>
                     <p ><code>!pip install PyCPPExecuter</code></p>
+                </div>
+                <div>
+                    <p>To verify the gcc compiler is installed run this</p>
+                    <div class="code-block">
+                        <p class="comment"><code>#bash</code></p>
+                        <p><code>gcc-install</code></p>
+                    </div>
+                    <p>For Google colab/jupyter Notebook</p>
+                    <div class="code-block"><p class="comment"><code>#Python</code></p>
+                        <p><code>import os</code></p>
+                        <p><code>os.system('gcc-install')</code></p>
+                    </div>
                 </div>
                 <p></p>
                 <div style="width: 83%;"><b>Note</b>: Any error in file path permissions please try to use 
@@ -65,37 +90,227 @@
                 </div>
                 <p></p>
             </div>
-            <div id="RunningCPP">
-                <h1>Running C++ Code</h1>
+            <div id="CPP">
+                <h1>C++</h1>
+                <div id="RunningCPP">
+                    <h4>Running C++ Code</h4>
+                    <div>
+                        <p style="width: 83%;">By specifying the code in the doc strings and invoking the
+                            compile method and execute method one after the other from the class
+                            <b>CPPExecuter</b>.
+                        </p>
+                        <div class="code-block">
+                            <p class="comment"><code>#Python</code></p>
+                            <p class="comment"><code>#Import the CPPExecuter class</code></p>
+                            <p><code>from PyCPPExecuter import CPPExecuter</code></p>
+                            <p class="comment"><code>#Initialize the Code in doc string</code></p>
+                            <p>
+<code class="language-python"><pre class="docstring">
+<p style="color: rgb(255, 255, 255);display: inline-table;">cppcode =</p> """#include&lt;iostream&gt;
+ int main(){
+     std::cout << "Hello World!";
+     return 0;
+ }"""
+</pre>
+                            </code></p>
+                            <p><code>executer = CPPExecuter()</code></p>
+                            <p><code>executer.compile(code = cppcode)</code></p>
+                            <p><code>executer.execute()</code></p>
+                        </div>
+                    </div>
+                </div>
                 <div>
-                    <p style="width: 83%;">By specifying the code in the doc strings and invoking the
-                        compile method and execute method one after the other from the class
-                        <b>CPPExecuter</b>.
-                    </p>
-                    <div class="code-block language-python">
+                    <h4>Compiling the External File of C++ Code</h4>
+                    <div class="code-block">
+                        <p class="comment"><code>#Python</code></p>
                         <p class="comment"><code>#Import the CPPExecuter class</code></p>
                         <p><code>from PyCPPExecuter import CPPExecuter</code></p>
-                        <p class="comment"><code>#Initialize the Code in doc string</code></p>
+                        <p><code>file_path = "path/to/your/c++/file.cpp"</code></p>
+                        <p><code>executer = CPPExecuter()</code></p>
+                        <p><code>executer.compile(file_path = file_path)</code></p>
+                        <p><code>executer.execute()</code></p>
+                    </div>
+                </div>
+                <div id="CPPObject">
+                    <h4>Generating the Object file for the C++ code</h4>
+                    <div class="code-block">
+                        <p class="comment"><code>#Python</code></p>
+                        <p class="comment"><code>#Import the CPPExecuter class</code></p>
+                        <p><code>from PyCPPExecuter import CPPExecuter</code></p>
+                        <p><code>executer = CPPExecuter()</code></p>
                         <p>
-<code class="language-python"><pre class="docstring">
+                            <code class="language-python"><pre class="docstring">
 <p style="color: rgb(255, 255, 255);display: inline-table;">cppcode =</p> """#include&lt;iostream&gt;
 int main(){
     std::cout << "Hello World!";
     return 0;
 }"""
-</pre>
-                        </code></p>
-                        <p><code>exe = CPPExecuter()</code></p>
-                        <p><code>exe.compile(code = cppcode)</code></p>
-                        <p><code>exe.execute()</code></p>
+                            </pre>
+                        </p>
+                        <p><code>saving_path = "path/to/save/object/file.o"</code></p>
+                        <p><code>executer.create_object_file(code = cppcode, path = saving_path)</code></p>
+                    </div>
+                </div>
+                <div>
+                    <h4 >Generating Object file from external C++ code by specifying the file_path</h4>
+                    <div class="code-block">
+                        <p class="comment"><code>#Python</code></p>
+                        <p class="comment"><code>#Import the CPPExecuter class</code></p>
+                        <p><code>from PyCPPExecuter import CPPExecuter</code></p>
+                        <p><code>executer = CPPExecuter()</code></p>
+                        <p><code>file_path = "path/of/the/c++/file.cpp"</code></p>
+                        <p><code>saving_path = "path/to/save/object/file.o"</code></p>
+                        <p><code>executer.create_object_file(file_path = file_path, path = saving_path)</code></p>
+                    </div>
+                </div>
+                <div id="CPPAssembly">
+                    <h4>Generating Assembly code for the C++ code</h4>
+                    <div class="code-block">
+                        <p class="comment"><code>#Python</code></p>
+                        <p class="comment"><code>#Import the CPPExecuter class</code></p>
+                        <p><code>from PyCPPExecuter import CPPExecuter</code></p>
+                        <p><code>executer = CPPExecuter()</code></p>
+                        <p>
+                            <code><pre class="docstring">
+<p style="color: rgb(255, 255, 255);display: inline-table;">cppcode =</p> """#include&lt;iostream&gt;
+int main(){
+    std::cout << "Hello World!";
+    return 0;
+}"""
+                            </pre>
+                        </p>
+                        <p><code>saving_path = "path/to/save/object/file.asm"</code></p>
+                        <p><code>executer.create_assembly_code(code = cppcode, path = saving_path)</code></p>
+                    </div>
+                </div>
+                <div>
+                    <h4>Generating Assembly Code from external C++ code by specifying the file_path</h4>
+                    <div class="code-block">
+                        <p class="comment"><code>#Python</code></p>
+                        <p class="comment"><code>#Import the CPPExecuter class</code></p>
+                        <p><code>from PyCPPExecuter import CPPExecuter</code></p>
+                        <p><code>executer = CPPExecuter()</code></p>
+                        <p><code>file_path = "path/of/the/c++/file.cpp"</code></p>
+                        <p><code>saving_path = "path/to/save/object/file.asm"</code></p>
+                        <p><code>executer.create_object_file(file_path = file_path, path = saving_path)</code></p>
                     </div>
                 </div>
             </div>
-
+            <div id="C">
+                <h1>C</h1>
+                <div id="RunningC">
+                    <h4>Running C Code</h4>
+                    <div>
+                        <p style="width: 83%;font-family: Arial, Helvetica, sans-serif;">By specifying the code in the doc strings and invoking the
+                            compile method and execute method one after the other from the class
+                            <b>CPPExecuter</b>.
+                        </p>
+                        <div class="code-block">
+                            <p class="comment"><code>#Python</code></p>
+                            <p class="comment"><code>#Import the CPPExecuter class</code></p>
+                            <p><code>from PyCPPExecuter import CPPExecuter</code></p>
+                            <p class="comment"><code>#Initialize the Code in doc string</code></p>
+                            <p>
+<code class="language-python"><pre class="docstring">
+<p style="color: rgb(255, 255, 255);display: inline-table;">ccode =</p> """#include&lt;stdio.h&gt;
+ int main(){
+     printf("Hello World!");
+     return 0;
+ }"""
+</pre>
+                            </code></p>
+                            <p><code>executer = CPPExecuter(lang='C')</code></p>
+                            <p><code>executer.compile(code = ccode)</code></p>
+                            <p><code>executer.execute()</code></p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h4>Compiling the External File of C Code</h4>
+                    <div class="code-block">
+                        <p class="comment"><code>#Python</code></p>
+                        <p class="comment"><code>#Import the CPPExecuter class</code></p>
+                        <p><code>from PyCPPExecuter import CPPExecuter</code></p>
+                        <p><code>file_path = "path/to/your/c/file.c"</code></p>
+                        <p><code>executer = CPPExecuter(lang='C')</code></p>
+                        <p><code>executer.compile(file_path = file_path)</code></p>
+                        <p><code>executer.execute()</code></p>
+                    </div>
+                </div>
+                <div id="CObject">
+                    <h4>Generating the Object file for the C code</h4>
+                    <div class="code-block">
+                        <p class="comment"><code>#Python</code></p>
+                        <p class="comment"><code>#Import the CPPExecuter class</code></p>
+                        <p><code>from PyCPPExecuter import CPPExecuter</code></p>
+                        <p><code>executer = CPPExecuter(lang='C')</code></p>
+                        <p>
+                            <code class="language-python"><pre class="docstring">
+<p style="color: rgb(255, 255, 255);display: inline-table;">ccode =</p> """#include&lt;stdio.h&gt;
+int main(){
+    printf("Hello World!");
+    return 0;
+}"""
+                            </pre>
+                        </p>
+                        <p><code>saving_path = "path/to/save/object/file.o"</code></p>
+                        <p><code>executer.create_object_file(code = ccode, path = saving_path)</code></p>
+                    </div>
+                </div>
+                <div>
+                    <h4 >Generating Object file from external C code by specifying the file_path</h4>
+                    <div class="code-block">
+                        <p class="comment"><code>#Python</code></p>
+                        <p class="comment"><code>#Import the CPPExecuter class</code></p>
+                        <p><code>from PyCPPExecuter import CPPExecuter</code></p>
+                        <p><code>executer = CPPExecuter(lang='C')</code></p>
+                        <p><code>file_path = "path/of/the/c/file.c"</code></p>
+                        <p><code>saving_path = "path/to/save/object/file.o"</code></p>
+                        <p><code>executer.create_object_file(file_path = file_path, path = saving_path)</code></p>
+                    </div>
+                </div>
+                <div id="CObject">
+                    <h4>Generating Assembly code for the C code</h4>
+                    <div class="code-block">
+                        <p class="comment"><code>#Python</code></p>
+                        <p class="comment"><code>#Import the CPPExecuter class</code></p>
+                        <p><code>from PyCPPExecuter import CPPExecuter</code></p>
+                        <p><code>executer = CPPExecuter(lang='C')</code></p>
+                        <p>
+                            <code><pre class="docstring">
+<p style="color: rgb(255, 255, 255);display: inline-table;">ccode =</p> """#include&lt;stdio.h&gt;
+int main(){
+    printf("Hello World!");
+    return 0;
+}"""
+                            </pre>
+                        </p>
+                        <p><code>saving_path = "path/to/save/object/file.asm"</code></p>
+                        <p><code>executer.create_assembly_code(code = ccode, path = saving_path)</code></p>
+                    </div>
+                </div>
+                <div>
+                    <h4>Generating Assembly Code from external C code by specifying the file_path</h4>
+                    <div class="code-block">
+                        <p class="comment"><code>#Python</code></p>
+                        <p class="comment"><code>#Import the CPPExecuter class</code></p>
+                        <p><code>from PyCPPExecuter import CPPExecuter</code></p>
+                        <p><code>executer = CPPExecuter(lang='C')</code></p>
+                        <p><code>file_path = "path/of/the/c/file.cpp"</code></p>
+                        <p><code>saving_path = "path/to/save/object/file.asm"</code></p>
+                        <p><code>executer.create_object_file(file_path = file_path, path = saving_path)</code></p>
+                    </div>
+                </div>
+            </div>
+            <p style="font-family: Arial, Helvetica, sans-serif;">Note: Please use additional forward slash(/) for 
+                escapce sequence characters in the doc strings. <br> 
+                Note: Please report any Issues in the 
+                <a href="https://github.com/Jayakrishna112/PyCPPExecuter/issues" target="_blank">github repository Issues page.</a>
+            </p>
         </div>
     </div>
+    <div style="height: 40px;"></div>
     <script src="script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pygments/2.10.0/pygments.min.js"></script>
 </body>
 
 </html>
